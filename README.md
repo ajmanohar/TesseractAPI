@@ -14,6 +14,18 @@ This service:
 * Evaluates cryptographic check digits built into the MRZ, providing a safety flag (`valid_mrz`) to catch OCR inaccuracies.
 * Provides a decoupled backend API that can be consumed by Android apps, web dashboards, or background workers over HTTP.
 
+## Home Lab Series & Architecture Vision
+
+> This project is part of an ongoing **Self-Hosted Home Lab Series** showcasing privacy-first, on-premise automation workflows.
+
+The primary objective of this microservice is to run self-hosted on a dedicated local desktop server running **Ubuntu** within a local home lab network. 
+
+### Why Host Locally in a Home Lab?
+* **Data Privacy & Compliance**: Identity documents (passports, visas, and arrival forms) contain sensitive personal information[cite: 1, 2]. Processing them inside a local network eliminates the need to route guest data through third-party cloud OCR providers.
+* **Low Latency & High Availability**: Local devices (such as Android ingestion tablets or desktop check-in apps) communicate directly with the local server via LAN over fast internal HTTP connections[cite: 1].
+* **Resource Optimization**: Heavier OCR pipelines and image preprocessing are offloaded from low-power client devices (like phones or tablets) to dedicated home lab compute infrastructure without external API costs[cite: 1].
+* **Modular Integration**: While initially tested on local development environments (Windows/VS Code), the service is architected to deploy seamlessly onto an Ubuntu home server using Systemd or Docker, serving as the OCR backbone for projects like automated registration assistants and Form-C immigration pipelines[cite: 1].
+
 ---
 
 ## 2. Project Architecture
